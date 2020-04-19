@@ -6,7 +6,7 @@
   top: 0;
   left: 0;
   z-index: 200;
-  background-color: #8f5c2c;
+  background-color: #fff;
   padding: 32px 16px;
   box-sizing: border-box;
   transition: transform 0.3s ease-in-out;
@@ -28,5 +28,5 @@
 
 .Logo {
   height: 11%;
-  width: 30%;
+  margin-bottom: 32px;
 }
