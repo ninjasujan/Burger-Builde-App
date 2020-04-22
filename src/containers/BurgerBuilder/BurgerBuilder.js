@@ -100,7 +100,7 @@ class BurgerBuilder extends Component {
             purchaseContinued={this.openModal}
             price={this.state.totalPrice.toFixed(2)}
           />{' '}
-        </Modal>
+        </Modal> 
         <Burger ingredients={this.state.ingredients} />
         <BuildControls
           ingredientAdded={this.addIngredientHandler}
