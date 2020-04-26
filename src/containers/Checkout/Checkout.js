@@ -42,6 +42,7 @@ class Checkout extends Component {
           checkoutCancelled={this.checkoutCancelHandler}
           ingredients={this.state.ingredients}
         />
+        {console.log('Match', this.props.match)}
         <Route
           path={this.props.match.path + '/contact-data'}
           render={(props) => (
