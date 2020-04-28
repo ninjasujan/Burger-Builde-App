@@ -18,9 +18,17 @@
   display: block;
   width: 100%;
   box-sizing: border-box;
+  border-radius: 6px;
+  color: #000;
 }
 
 .InputElement:focus {
   outline: none;
-  background-color: #ccc;
+  /* background-color: #ccc; */
+  border: 2px solid rgb(43, 164, 240);
+  padding: 8px 10px;
+}
+.Invalid {
+  border: 1px solid rgba(236, 11, 11, 0.705);
+  background-clip: content-box;
 }
