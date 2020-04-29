@@ -85,24 +85,11 @@ class ContactData extends Component {
           ],
         },
         value: '',
+        valid: true,
       },
     },
+    formIsValid: false,
     loading: false,
-  };
-
-  checkValidity = (value, rules) => {
-    let isValid = true;
-    if (rules == null) return true;
-    if (rules.required) {
-      isValid = value.trim() !== '' && isValid;
-    }
-    if (rules.minLength) {
-      isValid = value.length >= rules.minLength && isValid;
-    }
-    if (rules.maxLength) {
-      isValid = value.length <= rules.maxLength && isValid;
-    }
-    return isValid;
   };
 
   orderHandler = (event) => {
@@ -130,6 +117,21 @@ class ContactData extends Component {
       });
   };
 
+  checkValidity = (value, rules) => {
+    let isValid = true;
+    if (rules == null) return true;
+    if (rules.required) {
+      isValid = value.trim() !== '' && isValid;
+    }
+    if (rules.minLength) {
+      isValid = value.length >= rules.minLength && isValid;
+    }
+    if (rules.maxLength) {
+      isValid = value.length <= rules.maxLength && isValid;
+    }
+    return isValid;
+  };
+
   inputChangeHandler = (event, inputIdentifier) => {
     const updateOrderForm = {
       ...this.state.orderForm,
@@ -142,9 +144,13 @@ class ContactData extends Component {
       updatedFormElement.validation
     );
     updateOrderForm[inputIdentifier] = updatedFormElement;
-    console.log(updatedFormElement);
+    let formIsValid = true;
+    for (let inputIdentifier in updateOrderForm) {
+      formIsValid = updateOrderForm[inputIdentifier].valid && formIsValid;
+    }
     this.setState({
       orderForm: updateOrderForm,
+      formIsValid: formIsValid,
     });
   };
 
@@ -170,7 +176,12 @@ class ContactData extends Component {
             touched={formElement.config.touched}
           />
         ))}
-        <Button btnType="Success" clicked={this.orderHandler}>
+
+        <Button
+          btnType="Success"
+          clicked={this.orderHandler}
+          disabled={!this.state.formIsValid}
+        >
           ORDER
         </Button>
       </form>
